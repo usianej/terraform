@@ -10,6 +10,10 @@ terraform {
       storage_account_name = "terraform202316"
       container_name       = "tfstate"
       key                  = "terraform.tfstate"
+      use_oidc             = true
+      client-id: ${{ secrets.AZURE_CLIENT_ID }}
+      tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+      subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
   }
 
 }
