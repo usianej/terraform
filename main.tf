@@ -12,6 +12,6 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "state-demo-secure" {
-  name     = "statfe-demo"
+  name     = "statse-demo"
   location = "eastus"
 }
