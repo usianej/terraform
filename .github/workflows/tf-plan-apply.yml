@@ -132,11 +132,6 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     needs: [terraform-plan]
-    # env:
-    #   ARM_CLIENT_ID: "18b7125f-caf6-49d2-a6da-1361ee05a9dd"
-    #   ARM_SUBSCRIPTION_ID: "${{ secrets.AZURE_SUBSCRIPTION_ID }}"
-    #   ARM_TENANT_ID: "${{ secrets.AZURE_TENANT_ID }}"
-    #   ARM_CLIENT_SECRET: ${{ secrets.AZURE_PROD_CLIENT_SECRET }}
     
     steps:
     # Checkout the repository to the GitHub Actions runner
