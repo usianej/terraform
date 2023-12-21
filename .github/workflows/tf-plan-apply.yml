@@ -186,8 +186,6 @@ jobs:
         TF_VAR_client_secret: ${{ secrets.AZURE_PROD_CLIENT_SECRET }}
       run: |
         export exitcode=0
-        export TF_VAR_client_id="${{ secrets.AZURE_PROD_CLIENT_ID }}"
-        export TF_VAR_client_secret="${{ secrets.AZURE_PROD_CLIENT_SECRET }}"
         terraform apply -auto-approve tfplan || export exitcode=$?
         echo "exitcode=$exitcode" >> $GITHUB_OUTPUT
         if [ $exitcode -eq 1 ]; then
