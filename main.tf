@@ -2,6 +2,8 @@ variable "subscription_id" {}
 variable "client_id" {}
 variable "client_secret" {}
 variable "tenant_id" {}
+variable "TF_VAR_client_id" {}
+variable "TF_VAR_client_secret" {}
 terraform {
   required_providers {
     azurerm = {
