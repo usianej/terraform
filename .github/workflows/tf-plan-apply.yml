@@ -25,8 +25,12 @@ jobs:
     name: 'Terraform Plan'
     runs-on: ubuntu-latest
     env:
+      TF_VAR_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      TF_VAR_client_id:       ${{ secrets.AZURE_CLIENT_ID }}
+      TF_VAR_client_secret:   ${{ secrets.AZURE_CLIENT_SECRET }}
+      TF_VAR_tenant_id:       ${{ secrets.AZURE_TENANT_ID }}
       #this is needed since we are running terraform with read-only permissions
-      ARM_SKIP_PROVIDER_REGISTRATION: true
+      #ARM_SKIP_PROVIDER_REGISTRATION: true
     outputs:
       tfplanExitCode: ${{ steps.tf-plan.outputs.exitcode }}
 
