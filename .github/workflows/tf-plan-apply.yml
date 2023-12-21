@@ -25,12 +25,8 @@ jobs:
     name: 'Terraform Plan'
     runs-on: ubuntu-latest
     env:
-      TF_VAR_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-      TF_VAR_client_id:       ${{ secrets.AZURE_CLIENT_ID }}
-      TF_VAR_client_secret:   ${{ secrets.AZURE_CLIENT_SECRET }}
-      TF_VAR_tenant_id:       ${{ secrets.AZURE_TENANT_ID }}
       #this is needed since we are running terraform with read-only permissions
-      #ARM_SKIP_PROVIDER_REGISTRATION: true
+      ARM_SKIP_PROVIDER_REGISTRATION: true
     outputs:
       tfplanExitCode: ${{ steps.tf-plan.outputs.exitcode }}
 
@@ -65,22 +61,11 @@ jobs:
     # Will fail the build if not
     - name: Terraform Format
       run: terraform fmt -check
-    #Add Azure Credentials
-    - name: Configure Azure credentials
-      run: |
-        echo "subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}" >> $GITHUB_ENV
-        echo "client_id=${{ secrets.AZURE_CLIENT_ID }}" >> $GITHUB_ENV
-        echo "client_secret=${{ secrets.AZURE_CLIENT_SECRET }}" >> $GITHUB_ENV
-        echo "tenant_id=${{ secrets.AZURE_TENANT_ID }}" >> $GITHUB_ENV
+
     # Generates an execution plan for Terraform
     # An exit code of 0 indicated no changes, 1 a terraform failure, 2 there are pending changes.
     - name: Terraform Plan
       id: tf-plan
-      env:
-        subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-        client_id:       ${{ secrets.AZURE_CLIENT_ID }}
-        client_secret:   ${{ secrets.AZURE_CLIENT_SECRET }}
-        tenant_id:       ${{ secrets.AZURE_TENANT_ID }}
       run: |
         export exitcode=0
         terraform plan -detailed-exitcode -no-color -out tfplan || export exitcode=$?
