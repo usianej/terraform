@@ -189,8 +189,8 @@ jobs:
       env:
         TF_VAR_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
         TF_VAR_tenant_id: ${{ secrets.AZURE_TENANT_ID }}
-        PRODUCTION_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-        PRODUCTION_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+        TF_VAR_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+        TF_VAR_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
       run: |
         export exitcode=0
         export TF_VAR_subscription_id="${{ secrets.AZURE_SUBSCRIPTION_ID }}"
