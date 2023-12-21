@@ -72,7 +72,7 @@ jobs:
         TF_VAR_client_secret: ${{ secrets.AZURE_CLIENT_SECRET }}
         TF_VAR_tenant_id: ${{ secrets.AZURE_TENANT_ID }}
       run: |
-        export exitcode=0
+        # export exitcode=0
         # export TF_VAR_subscription_id="${{ secrets.AZURE_SUBSCRIPTION_ID }}"
         # export TF_VAR_client_id="${{ secrets.AZURE_CLIENT_ID }}"
         # export TF_VAR_client_secret="${{ secrets.AZURE_CLIENT_SECRET }}"
