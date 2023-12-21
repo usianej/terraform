@@ -172,14 +172,13 @@ jobs:
 
     - name: Debug Environment Variables
       run: |
-        echo "TF_VAR_client_id=${TF_VAR_client_id}"
-        echo "TF_VAR_client_secret=${TF_VAR_client_secret}"
-    
+        echo "PRODUCTION_CLIENT_ID=${{ secrets.AZURE_PROD_CLIENT_ID }}"
+        echo "PRODUCTION_CLIENT_SECRET=${{ secrets.AZURE_PROD_CLIENT_SECRET }}"
 
 
     # Terraform Apply
-   #- name: Terraform Apply
-   #  run: terraform apply -auto-approve tfplan
+    - name: Terraform Apply
+      run: terraform apply -auto-approve tfplan
 
     # - name: Terraform Apply
     #   env:
@@ -195,18 +194,3 @@ jobs:
     #     else 
     #       exit 0
     #     fi
-    - name: Terraform Apply
-      env:
-        TF_VAR_client_id: ${{ secrets.AZURE_PROD_CLIENT_ID }}
-        TF_VAR_client_secret: ${{ secrets.AZURE_PROD_CLIENT_SECRET }}
-      run: |
-        export exitcode=0
-        terraform apply -auto-approve tfplan || export exitcode=$?
-        echo "exitcode=$exitcode" >> $GITHUB_OUTPUT
-        if [ $exitcode -eq 1 ]; then
-          echo Terraform Apply Failed!
-          exit 1
-        else 
-          exit 0
-        fi
-  
