@@ -73,7 +73,7 @@ jobs:
     - name: Terraform Plan
       id: tf-plan
       run: |
-        env:
+        env
           subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           client_id:       ${{ secrets.AZURE_CLIENT_ID }}
           client_secret:   ${{ secrets.AZURE_CLIENT_SECRET }}
