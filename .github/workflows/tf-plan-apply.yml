@@ -182,5 +182,17 @@ jobs:
         name: tfplan
 
     # Terraform Apply
-    - name: Terraform Apply
-      run: terraform apply -auto-approve tfplan
+    - name: Terraform Apply  
+      id: tf-apply
+      env:
+        TF_VAR_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        TF_VAR_client_id: ${{ secrets.AZURE_CLIENT_ID }}
+        TF_VAR_client_secret: ${{ secrets.AZURE_CLIENT_SECRET }}
+        TF_VAR_tenant_id: ${{ secrets.AZURE_TENANT_ID }}
+
+      run: |
+        export TF_VAR_subscription_id="${{ secrets.AZURE_SUBSCRIPTION_ID }}"
+        export TF_VAR_client_id="${{ secrets.AZURE_CLIENT_ID }}"
+        export TF_VAR_client_secret="${{ secrets.AZURE_CLIENT_SECRET }}"
+        export TF_VAR_tenant_id="${{ secrets.AZURE_TENANT_ID }}"
+        terraform apply -auto-approve tfplan
