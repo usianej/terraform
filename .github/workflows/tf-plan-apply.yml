@@ -35,16 +35,16 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    # trying to create a main.tfvars
-    # - name: Create main.tfvars
-    #   run: |
-    #     echo "subscription_id = \"${{ secrets.AZURE_SUBSCRIPTION_ID }}\"" > main.tfvars
-    #     echo "client_id       = \"${{ secrets.AZURE_CLIENT_ID }}\"" >> main.tfvars
-    #     echo "client_secret   = \"${{ secrets.AZURE_CLIENT_SECRET }}\"" >> main.tfvars
-    #     echo "tenant_id       = \"${{ secrets.AZURE_TENANT_ID }}\"" >> main.tfvars
-    #     echo "test       = 324323523" >> main.tfvars
-    #     cat main.tfvars
-    #     terraform fmt -recursive
+    #trying to create a main.tfvars
+    - name: Create main.tfvars
+      run: |
+        echo "subscription_id = \"${{ secrets.AZURE_SUBSCRIPTION_ID }}\"" > main.tfvars
+        echo "client_id       = \"${{ secrets.AZURE_CLIENT_ID }}\"" >> main.tfvars
+        echo "client_secret   = \"${{ secrets.AZURE_CLIENT_SECRET }}\"" >> main.tfvars
+        echo "tenant_id       = \"${{ secrets.AZURE_TENANT_ID }}\"" >> main.tfvars
+        echo "test       = 324323523" >> main.tfvars
+        cat main.tfvars
+        terraform fmt -recursive
       
     # Install the latest version of the Terraform CLI
     - name: Setup Terraform
@@ -79,7 +79,7 @@ jobs:
       id: tf-plan
       run: |
         export exitcode=0
-        # terraform plan -detailed-exitcode -no-color -out tfplan || export exitcode=$?
+        # terraform plan -detailed-exitcode -var-file=main.tfvars -no-color -out tfplan || export exitcode=$?
         terraform plan \
           -detailed-exitcode 
           -no-color 
