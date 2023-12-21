@@ -84,10 +84,10 @@ jobs:
         TF_VAR_tenant_id: ${{ secrets.AZURE_TENANT_ID }}
       run: |
         export exitcode=0
-        export TF_VAR_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-        export TF_VAR_client_id: ${{ secrets.AZURE_CLIENT_ID }}
-        export TF_VAR_client_secret: ${{ secrets.AZURE_CLIENT_SECRET }}
-        export TF_VAR_tenant_id: ${{ secrets.AZURE_TENANT_ID }}
+        export TF_VAR_subscription_id="${{ secrets.AZURE_SUBSCRIPTION_ID }}"
+        export TF_VAR_client_id="${{ secrets.AZURE_CLIENT_ID }}"
+        export TF_VAR_client_secret="${{ secrets.AZURE_CLIENT_SECRET }}"
+        export TF_VAR_tenant_id="${{ secrets.AZURE_TENANT_ID }}"
         terraform plan -detailed-exitcode -no-color -out tfplan || export exitcode=$?
 
         echo "exitcode=$exitcode" >> $GITHUB_OUTPUT
@@ -98,7 +98,7 @@ jobs:
         else 
           exit 0
         fi
-        
+
     # Save plan to artifacts  
     - name: Publish Terraform Plan
       uses: actions/upload-artifact@v3
