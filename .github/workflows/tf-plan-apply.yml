@@ -162,7 +162,9 @@ jobs:
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
-      run: terraform init
+      run: |
+        rm -rf .terraform.*
+        terraform init
     
     # Download saved plan from artifacts  
     - name: Download Terraform Plan
