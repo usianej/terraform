@@ -188,7 +188,7 @@ jobs:
         export TF_VAR_client_id="${{ secrets.AZURE_PROD_CLIENT_ID }}"
         export TF_VAR_client_secret="${{ secrets.AZURE_PROD_CLIENT_SECRET }}"
         export TF_VAR_tenant_id="${{ secrets.AZURE_TENANT_ID }}"
-        terraform apply -detailed-exitcode -no-color -out tfplan || export exitcode=$?
+        terraform apply -auto-approve tfplan || export exitcode=$?
     # - name: Terraform Apply
     #   env:
     #     TF_VAR_client_id: ${{ secrets.AZURE_PROD_CLIENT_ID }}
