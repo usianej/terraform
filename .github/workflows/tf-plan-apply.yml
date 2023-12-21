@@ -178,6 +178,9 @@ jobs:
 
     # Terraform Apply
     - name: Terraform Apply
+      env:
+        TF_VAR_client_id: ${{ secrets.AZURE_PROD_CLIENT_ID }}
+        TF_VAR_client_secret: ${{ secrets.AZURE_PROD_CLIENT_SECRET }}
       run: terraform apply -auto-approve tfplan
 
     # - name: Terraform Apply
