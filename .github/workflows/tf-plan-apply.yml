@@ -44,6 +44,7 @@ jobs:
         echo "tenant_id       = \"${{ secrets.AZURE_TENANT_ID }}\"" >> main.tfvars
         echo "test       = 324323523" >> main.tfvars
         cat main.tfvars
+        terraform fmt -recursive
       
     # Install the latest version of the Terraform CLI
     - name: Setup Terraform
