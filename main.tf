@@ -30,6 +30,6 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "state-demo-secure" {
-  name     = "state-demo"
+  name     = "state-demo-gressd"
   location = "eastus"
 }
