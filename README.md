@@ -10,5 +10,5 @@ There are multiple workflow files
 
 - tf-unit-tests.yml -> carries out unit tests 
 - tf-plan-apply.yml -> plans the deployment tasks and executes them 
-- tf-drift.yml -> checks for configuration drift.
+- tf-drift.yml -> checks for configuration drift..
 
